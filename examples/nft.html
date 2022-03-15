@@ -175,12 +175,14 @@
     //		add an object in the scene
     //////////////////////////////////////////////////////////////////////////////////
 
-    var threeGLTFLoader = new THREE.GLTFLoader();
+    var threeGLTFLoader = new THREE.();
     var model;
 
-    threeGLTFLoader.load("./resources/Flamingo.js", function (gltf) {
-      model = gltf.scene.children[0];
-      model.name = 'Flamingo';
+    threeGLTFLoader.parse("http://www.our-work.com.tw/creative/burton/three.js/examples/resources/raptor/scene.gltf.json","http://www.our-work.com.tw/creative/burton/three.js/examples/resources/raptor/", 
+    function (gltf) {
+      console.log(gltf)
+      model = gltf;
+      model.name = 'raptor';
 
       var animation = gltf.animations[0];
       var mixer = new THREE.AnimationMixer(model);
@@ -231,8 +233,10 @@
       };
 
       requestAnimationFrame(animate);
-    }
-    );
+    },
+    function(err) {
+      console.log(err)
+    });
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/vconsole@3.2.0/dist/vconsole.min.js"></script>
